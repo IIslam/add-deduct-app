@@ -6,7 +6,7 @@ const mustache = require("mustache");
 /////////////////////////////////////////////////////////////
 const getDatabaseUrl = () => {
   try {
-    return cfServices("add-deduct").credentials.uri;
+    return cfServices("add-deduct-db").credentials.uri;
   } catch (err) {
     return (
       process.env.DATABASE_URL || "mongodb://localhost:27017/add-deduct-db"

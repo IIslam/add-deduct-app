@@ -1,7 +1,6 @@
 "use strict";
 require("dotenv").config();
 
-const nodemailer = require("nodemailer");
 const { getFromEmail } = require("../utilities");
 const sgMail = require("@sendgrid/mail");
 

@@ -1,7 +1,7 @@
 applications:
-  - name: leaver-app
+  - name: add-deduct-app
     command: yarn start:server
     env:
       NODE_ENV: production
     services:
-      - leaver-db
+      - add-deduct-db

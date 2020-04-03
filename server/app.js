@@ -11,6 +11,7 @@ const { configureAuth } = require("./middlewares/authentication");
 const infoRouterFactory = require("./routes/info");
 const loginRouterFactory = require("./routes/login");
 const usersRouterFactory = require("./routes/users");
+const dataRouterFactory = require("./routes/data");
 
 const appFactory = (db, sessionStoreProvider) => {
   const app = express();
@@ -20,8 +21,8 @@ const appFactory = (db, sessionStoreProvider) => {
       limit: "50mb"
     })
   );
+  
   app.use(morgan("dev"));
-
   app.use(
     bodyParser.urlencoded({
       limit: "50mb",
@@ -60,6 +61,7 @@ const appFactory = (db, sessionStoreProvider) => {
   app.use(`${API_ROOT_PATH}/info`, infoRouterFactory(db));
   app.use(`${API_ROOT_PATH}/login`, loginRouterFactory());
   app.use(`${API_ROOT_PATH}/users`, usersRouterFactory(db));
+  app.use(`${API_ROOT_PATH}/data`, dataRouterFactory(db));
 
   app.use(express.static(path.join(__dirname, "static")));
 
@@ -70,6 +72,7 @@ const appFactory = (db, sessionStoreProvider) => {
     res.sendFile(path.join(__dirname, "static/index.html"));
   });
   app.use(cors());
+  
 
   return app;
 };

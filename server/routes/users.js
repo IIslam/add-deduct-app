@@ -1,14 +1,14 @@
 const bcrypt = require("bcryptjs");
 const express = require("express");
 
-const fs = require('fs');
+const fs = require("fs");
 
 const {
   ensureLoggedIn,
   ensureHasRole
 } = require("../middlewares/authentication");
-const {getHtmlBody} = require('../utilities');
-let mailer = require('../services/mail');
+const { getHtmlBody } = require("../utilities");
+let mailer = require("../services/mail");
 
 module.exports = db => {
   const router = new express.Router();
@@ -25,7 +25,7 @@ module.exports = db => {
     );
   });
   let roles = {};
-  router.post("/search", ensureLoggedIn, ensureHasRole(["admin"]), function (
+  router.post("/search", ensureLoggedIn, ensureHasRole(["admin"]), function(
     req,
     res
   ) {
@@ -75,24 +75,29 @@ module.exports = db => {
       } else {
         db.collection(req.body.collection).insertMany(
           req.body.jsonData,
-          function (err1, result) {
+          function(err1, result) {
             if (err1) {
               res.status(500).send();
               res.end();
             } else {
               if (req.body.collection === "users") {
-                
                 // Mail Notification
-                for(let index = 0; index < req.body.jsonData.length; index++){
+                for (let index = 0; index < req.body.jsonData.length; index++) {
                   const row = req.body.jsonData[index];
-                  let {username, staffId} = row;
-                  let scope = { name: getFirstName(username), staffId, signupUrl: '' };
+                  let { username, staffId } = row;
+                  let scope = {
+                    name: getFirstName(username),
+                    staffId,
+                    signupUrl: ""
+                  };
                   let subject = `Welcome ${scope.name} to Vodafone Outsource Leaver App`;
-                  let htmlBodyPromise = getHtmlBody('signup.html', scope).then((htmlBody) => {
-                    mailer.sendEmail([username], subject, htmlBody, () => {
-                      console.log(`Signup email sent to ${email}`);
-                    })
-                  })
+                  let htmlBodyPromise = getHtmlBody("signup.html", scope).then(
+                    htmlBody => {
+                      mailer.sendEmail([username], subject, htmlBody, () => {
+                        console.log(`Signup email sent to ${email}`);
+                      });
+                    }
+                  );
                 }
               }
               res.status(200).end();
@@ -103,40 +108,36 @@ module.exports = db => {
     }
   );
 
-  router.post(
-    "/addPassword",
-    (req, res) => {
-      req.body.password = bcrypt.hashSync(
-        req.body.password,
-        bcrypt.genSaltSync()
-      );
+  router.post("/addPassword", (req, res) => {
+    req.body.password = bcrypt.hashSync(
+      req.body.password,
+      bcrypt.genSaltSync()
+    );
 
-      db.collection("users").updateOne(
-        { username: req.body.username },
-        { $set: { password: req.body.password } },
-        function (err) {
-          if (err) {
-            return res.status(500).json({
-              msg: "Failed to update document."
-            });
-          } else {
-            return res.status(200).json({
-              msg: "Document successfully updated."
-            });
-          }
+    db.collection("users").updateOne(
+      { username: req.body.username },
+      { $set: { password: req.body.password } },
+      function(err) {
+        if (err) {
+          return res.status(500).json({
+            msg: "Failed to update document."
+          });
+        } else {
+          return res.status(200).json({
+            msg: "Document successfully updated."
+          });
         }
-      );
-    }
-  );
+      }
+    );
+  });
 
   return router;
 };
 
-
-const getFirstName = (email) => {
-  let initailSuffix = email.split('@')[0];
-  if (initailSuffix.includes('.')) {
-    return initailSuffix.split('.')[0]
+const getFirstName = email => {
+  let initailSuffix = email.split("@")[0];
+  if (initailSuffix.includes(".")) {
+    return initailSuffix.split(".")[0];
   }
   return initailSuffix;
-}
+};
