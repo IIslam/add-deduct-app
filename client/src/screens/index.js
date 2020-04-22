@@ -4,13 +4,13 @@ export * from './RegistrationScreen';
 
 /* Upload Users & Employees*/
 export * from './UploadUsersScreen';
-export * from './UploadEmployeesScreen';
 
 /* Function Teams */
 export * from './SalaryAdjustScreen';
 export * from './OvertimeScreen';
 export * from './NetExpensesScreen';
-export * from './NightShiftAmountDaysScreen';
+export * from './NightShiftAmountScreen';
+export * from './NightShiftDaysScreen';
 export * from './LostHoursScreen';
 export * from './OvertimeRewardGrossScreen';
 export * from './NoShowDetailedScreen';
@@ -26,6 +26,8 @@ export * from './GYMScreen';
 export * from './PenaltiesDetailedScreen';
 export * from './OnCallScreen';
 export * from './ProfileChangeScreen';
+export * from './NewHiresScreen';
 
 /* HR Team */
 export * from './HRScreen';
+export * from './HRFilesScreen';

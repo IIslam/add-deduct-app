@@ -3,13 +3,14 @@ import { Tab } from "semantic-ui-react";
 import { MenuItem } from '../components';
 import {
     SAT,
-    OT,
-    NET,
-    NSADT,
+    OVT,
+    NEXT,
+    NSAT,
+    NSDT,
     LHT,
     ORGT,
-    NSDT,
-    NST,
+    NSHDT,
+    NSHT,
     IGT,
     INT,
     MBT,
@@ -20,18 +21,20 @@ import {
     GYMT,
     PDT,
     OCT,
-    PCT
+    PCT,
+    NHT
 } from "../teams";
 
 const panes = [
     { menuItem: SAT.NAME, render: () => <MenuItem paneHeader={SAT.NAME} fileName={SAT.COLLECTION_NAME} paneKeys={SAT.PANE_KEYS} /> },
-    { menuItem: OT.NAME, render: () => <MenuItem paneHeader={OT.NAME} fileName={OT.COLLECTION_NAME} paneKeys={OT.PANE_KEYS} /> },
-    { menuItem: NET.NAME, render: () => <MenuItem paneHeader={NET.NAME} fileName={NET.COLLECTION_NAME} paneKeys={NET.PANE_KEYS} /> },
-    { menuItem: NSADT.NAME, render: () => <MenuItem paneHeader={NSADT.NAME} fileName={NSADT.COLLECTION_NAME} paneKeys={NSADT.PANE_KEYS} /> },
+    { menuItem: OVT.NAME, render: () => <MenuItem paneHeader={OVT.NAME} fileName={OVT.COLLECTION_NAME} paneKeys={OVT.PANE_KEYS} /> },
+    { menuItem: NEXT.NAME, render: () => <MenuItem paneHeader={NEXT.NAME} fileName={NEXT.COLLECTION_NAME} paneKeys={NEXT.PANE_KEYS} /> },
+    { menuItem: NSAT.NAME, render: () => <MenuItem paneHeader={NSAT.NAME} fileName={NSAT.COLLECTION_NAME} paneKeys={NSAT.PANE_KEYS} /> },
+    { menuItem: NSDT.NAME, render: () => <MenuItem paneHeader={NSDT.NAME} fileName={NSDT.COLLECTION_NAME} paneKeys={NSDT.PANE_KEYS} /> },
     { menuItem: LHT.NAME, render: () => <MenuItem paneHeader={LHT.NAME} fileName={LHT.COLLECTION_NAME} paneKeys={LHT.PANE_KEYS} /> },
     { menuItem: ORGT.NAME, render: () => <MenuItem paneHeader={ORGT.NAME} fileName={ORGT.COLLECTION_NAME} paneKeys={ORGT.PANE_KEYS} /> },
-    { menuItem: NSDT.NAME, render: () => <MenuItem paneHeader={NSDT.NAME} fileName={NSDT.COLLECTION_NAME} paneKeys={NSDT.PANE_KEYS} /> },
-    { menuItem: NST.NAME, render: () => <MenuItem paneHeader={NST.NAME} fileName={NST.COLLECTION_NAME} paneKeys={NST.PANE_KEYS} /> },
+    { menuItem: NSHDT.NAME, render: () => <MenuItem paneHeader={NSHDT.NAME} fileName={NSHDT.COLLECTION_NAME} paneKeys={NSHDT.PANE_KEYS} /> },
+    { menuItem: NSHT.NAME, render: () => <MenuItem paneHeader={NSHT.NAME} fileName={NSHT.COLLECTION_NAME} paneKeys={NSHT.PANE_KEYS} /> },
     { menuItem: IGT.NAME, render: () => <MenuItem paneHeader={IGT.NAME} fileName={IGT.COLLECTION_NAME} paneKeys={IGT.PANE_KEYS} /> },
     { menuItem: INT.NAME, render: () => <MenuItem paneHeader={INT.NAME} fileName={INT.COLLECTION_NAME} paneKeys={INT.PANE_KEYS} /> },
     { menuItem: MBT.NAME, render: () => <MenuItem paneHeader={MBT.NAME} fileName={MBT.COLLECTION_NAME} paneKeys={MBT.PANE_KEYS} /> },
@@ -43,6 +46,7 @@ const panes = [
     { menuItem: PDT.NAME, render: () => <MenuItem paneHeader={PDT.NAME} fileName={PDT.COLLECTION_NAME} paneKeys={PDT.PANE_KEYS} /> },
     { menuItem: OCT.NAME, render: () => <MenuItem paneHeader={OCT.NAME} fileName={OCT.COLLECTION_NAME} paneKeys={OCT.PANE_KEYS} /> },
     { menuItem: PCT.NAME, render: () => <MenuItem paneHeader={PCT.NAME} fileName={PCT.COLLECTION_NAME} paneKeys={PCT.PANE_KEYS} /> },
+    { menuItem: NHT.NAME, render: () => <MenuItem paneHeader={NHT.NAME} fileName={NHT.COLLECTION_NAME} paneKeys={NHT.PANE_KEYS}/>}
 ]
 
 export const HRTeamTable = () => {

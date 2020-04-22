@@ -1,7 +1,10 @@
 applications:
   - name: add-deduct-app
+    buildpacks:
+      - nodejs_buildpack
     command: yarn start:server
     env:
       NODE_ENV: production
     services:
+      - leaver-send
       - add-deduct-db

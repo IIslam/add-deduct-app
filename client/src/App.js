@@ -13,14 +13,14 @@ import { PersistGate } from "redux-persist/integration/react";
 import { ConnectedHeader, ConnectedPrivateRoute } from "./components";
 
 import {
-  UploadEmployeesScreen,
   UploadUsersScreen,
   RegistrationScreen,
   AuthenticationScreen,
   SalaryAdjustmentScreen,
   OvertimeScreen,
   NetExpensesScreen,
-  NightShiftAmountDaysScreen,
+  NightShiftAmountScreen,
+  NightShiftDaysScreen,
   LostHoursScreen,
   OvertimeRewardGrossScreen,
   NoShowDetailedScreen,
@@ -36,7 +36,9 @@ import {
   PenaltiesDetailedScreen,
   OnCallScreen,
   ProfileChangeScreen,
-  HRScreen
+  NewHiresScreen,
+  HRScreen,
+  HRFilesScreen
 } from "./screens";
 
 import "semantic-ui-css/semantic.min.css";
@@ -119,117 +121,126 @@ class App extends Component {
                   )}
                 />
                 <ConnectedPrivateRoute
-                  allowed={["admin", "hr"]}
+                  allowed={["ADA_HR"]}
                   path="/hr"
                   exact
                   component={HRScreen}
                 />
                 <ConnectedPrivateRoute
-                  allowed={["admin", "hr"]}
+                  allowed={["ADA_HR"]}
+                  path="/hr_files"
+                  component={HRFilesScreen}
+                />
+                <ConnectedPrivateRoute
+                  allowed={["ADA_HR"]}
                   path="/upload_users"
                   exact
                   component={UploadUsersScreen}
                 />
                 <ConnectedPrivateRoute
-                  allowed={["admin", "hr"]}
-                  path="/upload_employees"
-                  exact
-                  component={UploadEmployeesScreen}
-                />
-                <ConnectedPrivateRoute
                   path="/salary_adjust"
-                  allowed={["admin", "salary-adjust"]}
+                  allowed={["ADA_SA"]}
                   component={SalaryAdjustmentScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/overtime"
-                  allowed={["admin", "overtime"]}
+                  allowed={["ADA_OVT"]}
                   component={OvertimeScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/net_expenses"
-                  allowed={["admin", "net-expenses"]}
+                  allowed={["ADA_NEX"]}
                   component={NetExpensesScreen}
                 />
                 <ConnectedPrivateRoute
-                  path="/night_shift_amount_days"
-                  allowed={["admin", "night-shift"]}
-                  component={NightShiftAmountDaysScreen}
+                  path="/night_shift_amount"
+                  allowed={["ADA_NSAD"]}
+                  component={NightShiftAmountScreen}
+                />
+                <ConnectedPrivateRoute
+                  path="/night_shift_days"
+                  allowed={["ADA_NSAD"]}
+                  component={NightShiftDaysScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/lost_hours"
-                  allowed={["admin", "lost-hours"]}
+                  allowed={["ADA_LH"]}
                   component={LostHoursScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/overtime_reward_gross"
-                  allowed={["admin", "overtime-reward-gross"]}
+                  allowed={["ADA_ORG"]}
                   component={OvertimeRewardGrossScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/no_show_detailed"
-                  allowed={["admin", "no-show-detailed"]}
+                  allowed={["ADA_NSHD"]}
                   component={NoShowDetailedScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/no_shows"
-                  allowed={["admin", "no-shows"]}
+                  allowed={["ADA_NSH"]}
                   component={NoShowsScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/incentives_gross"
-                  allowed={["admin", "incentives-gross"]}
+                  allowed={["ADA_IG"]}
                   component={IncentivesGrossScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/incentives_net"
-                  allowed={["admin", "incentives-net"]}
+                  allowed={["ADA_IN"]}
                   component={IncentivesNetScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/mobile_bill"
-                  allowed={["admin", "mobile-bill"]}
+                  allowed={["ADA_MB"]}
                   component={MobileBillScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/sick_leave_detailed"
-                  allowed={["admin", "sick-leave-detailed"]}
+                  allowed={["ADA_SLD"]}
                   component={SickLeaveDetailedScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/sick_leave_cons"
-                  allowed={["admin", "sick-leave-cons"]}
+                  allowed={["ADA_SLC"]}
                   component={SickLeaveConsScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/ukde_referral"
-                  allowed={["admin", "ukde"]}
+                  allowed={["ADA_UKDE"]}
                   component={UKDEReferralProgNetAmountScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/award_gross_amount"
-                  allowed={["admin", "award-gross"]}
+                  allowed={["ADA_AGA"]}
                   component={AwardGrossAmountScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/gym"
-                  allowed={["admin", "gym"]}
+                  allowed={["ADA_GYM"]}
                   component={GYMScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/penalties_detailed"
-                  allowed={["admin", "penalties"]}
+                  allowed={["ADA_PD"]}
                   component={PenaltiesDetailedScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/on_call"
-                  allowed={["admin", "on-call"]}
+                  allowed={["ADA_OC"]}
                   component={OnCallScreen}
                 />
                 <ConnectedPrivateRoute
                   path="/profile_change"
-                  allowed={["admin", "profile"]}
+                  allowed={["ADA_PC"]}
                   component={ProfileChangeScreen}
+                />
+                <ConnectedPrivateRoute
+                  path="/new_hires"
+                  allowed={["ADA_NH"]}
+                  component={NewHiresScreen}
                 />
               </Switch>
             </Router>

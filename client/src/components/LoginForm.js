@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import {
   Button,
   Form,
@@ -9,8 +8,9 @@ import {
   Loader,
   Dimmer
 } from 'semantic-ui-react';
-
 import vodafoneLogo from '../assets/images/logo.svg';
+import { getInitialRoute } from '../util';
+
 
 export class LoginForm extends Component {
   constructor() {
@@ -22,8 +22,11 @@ export class LoginForm extends Component {
   }
 
   static getDerivedStateFromProps(nextProps) {
-    if (nextProps.isAuthenticated) {
-      nextProps.history.push('/upload_employees');
+    let { account } = nextProps;
+    if (nextProps.isAuthenticated && account !== undefined) {
+      let userRole = account.roles[0];
+      let initialRoute = getInitialRoute(userRole)
+      nextProps.history.push(initialRoute);
     }
     return null;
   }
@@ -44,7 +47,8 @@ export class LoginForm extends Component {
     loading: boolean,
     isAuthenticated: boolean,
     error: string,
-    history: Object
+    history: Object,
+    account: Object
   };
 
   updateFields = (value, key) => {
@@ -67,8 +71,8 @@ export class LoginForm extends Component {
     const loading = this.props.loading ? (
       value
     ) : (
-      <h1 style={{ color: 'red' }}>{this.props.error}</h1>
-    );
+        <h1 style={{ color: 'red' }}>{this.props.error}</h1>
+      );
 
     return (
       <Grid divided style={{ margin: 5, fontFamily: 'Poppins' }}>

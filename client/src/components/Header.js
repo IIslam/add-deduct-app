@@ -4,33 +4,34 @@ import { Nav, Navbar, Image } from "react-bootstrap";
 import { bindActionCreators } from "redux";
 import { Icon } from "semantic-ui-react";
 import Logo from "../assets/images/logo-wht.png";
-
 import { logout } from "../state";
+
 export class Header extends React.Component {
   constructor() {
     super();
     this.state = {
       err: "",
-      hrUsers: ["admin", "hr"],
-      salaryAdjustmentUsers: ["admin", "salary-adjust"],
-      overtimeUsers: ["admin", "overtime"],
-      netExpensesUsers: ["admin", "net-expenses"],
-      nightShiftAmountDaysUsers: ["admin", "night-shift"],
-      lostHoursUsers: ["admin", "lost-hours"],
-      overtimeRewardGrossUsers: ["admin", "overtime-reward-gross"],
-      noShowDetailedUsers: ["admin", "no-show-detailed"],
-      noShowsUsers: ["admin", "no-shows"],
-      incentivesGrossUsers: ["admin", "incentives-gross"],
-      incentivesNetUsers: ["admin", "incentives-net"],
-      mobileBillUsers: ["admin", "mobile-bill"],
-      sickLeaveDetailedUsers: ["admin", "sick-leave-detailed"],
-      sickLeaveConsUsers: ["admin", "sick-leave-cons"],
-      ukdeReferralUsers: ["admin", "ukde"],
-      awardGrossAmountUsers: ["admin", "award-gross"],
-      gymUsers: ["admin", "gym"],
-      penaltiesDetailedUsers: ["admin", "penalties"],
-      onCallUsers: ["admin", "on-call"],
-      profileChangeUsers: ["admin", "profile"]
+      hrUsers: ["ADA_HR"],
+      salaryAdjustmentUsers: ["ADA_SA"],
+      overtimeUsers: ["ADA_OVT"],
+      netExpensesUsers: ["ADA_NEX"],
+      nightShiftUsers: ["ADA_NSAD"],
+      lostHoursUsers: ["ADA_LH"],
+      overtimeRewardGrossUsers: ["ADA_ORG"],
+      noShowDetailedUsers: ["ADA_NSHD"],
+      noShowsUsers: ["ADA_NSH"],
+      incentivesGrossUsers: ["ADA_IG"],
+      incentivesNetUsers: ["ADA_IN"],
+      mobileBillUsers: ["ADA_MB"],
+      sickLeaveDetailedUsers: ["ADA_SLD"],
+      sickLeaveConsUsers: ["ADA_SLC"],
+      ukdeReferralUsers: ["ADA_UKDE"],
+      awardGrossAmountUsers: ["ADA_AGA"],
+      gymUsers: ["ADA_GYM"],
+      penaltiesDetailedUsers: ["ADA_PD"],
+      onCallUsers: ["ADA_OC"],
+      profileChangeUsers: ["ADA_PC"],
+      newHiresUsers: ["ADA_NH"]
     };
   }
 
@@ -46,7 +47,7 @@ export class Header extends React.Component {
   }
 
   checkAuth = (allowed_users, user_roles) => {
-    const found = allowed_users.some(r => user_roles.indexOf(r) > 0);
+    const found = allowed_users.some(r => user_roles.indexOf(r) >= 0);
     return found;
   };
 
@@ -62,10 +63,10 @@ export class Header extends React.Component {
         </Navbar.Brand>
         <Nav className="mr-auto font-weight-bold">
           {this.checkAuth(this.state.hrUsers, this.props.account.roles) && (
-            <Nav.Link href="/upload_employees">Upload Employees</Nav.Link>
+            <Nav.Link href="/upload_users">Upload Users</Nav.Link>
           )}
           {this.checkAuth(this.state.hrUsers, this.props.account.roles) && (
-            <Nav.Link href="/upload_users">Upload Users</Nav.Link>
+            <Nav.Link href="/hr_files">Excel Files</Nav.Link>
           )}
           {this.checkAuth(this.state.salaryAdjustmentUsers, this.props.account.roles) && (
             <Nav.Link href="/salary_adjust">Salary Adjustment</Nav.Link>
@@ -76,8 +77,11 @@ export class Header extends React.Component {
           {this.checkAuth(this.state.netExpensesUsers, this.props.account.roles) && (
             <Nav.Link href="/net_expenses">Net Expenses</Nav.Link>
           )}
-          {this.checkAuth(this.state.nightShiftAmountDaysUsers, this.props.account.roles) && (
-            <Nav.Link href="/night_shift_amount_days">Night Shift Amount Days</Nav.Link>
+          {this.checkAuth(this.state.nightShiftUsers, this.props.account.roles) && (
+            <Nav.Link href="/night_shift_amount">Night Shift Amount</Nav.Link>
+          )}
+          {this.checkAuth(this.state.nightShiftUsers, this.props.account.roles) && (
+            <Nav.Link href="/night_shift_days">Night Shift Days</Nav.Link>
           )}
           {this.checkAuth(this.state.lostHoursUsers, this.props.account.roles) && (
             <Nav.Link href="/lost_hours">Lost Hours</Nav.Link>
@@ -124,6 +128,9 @@ export class Header extends React.Component {
           {this.checkAuth(this.state.profileChangeUsers, this.props.account.roles) && (
             <Nav.Link href="/profile_change">Profile Change</Nav.Link>
           )}
+          {this.checkAuth(this.state.newHiresUsers, this.props.account.roles) && (
+            <Nav.Link href="/new_hires">New Hires</Nav.Link>
+          )}
         </Nav>
         <Nav className="justify-content-end font-weight-bold" activeKey="/home">
           {this.checkAuth(
@@ -136,7 +143,7 @@ export class Header extends React.Component {
               this.props.logout();
             }}
           >
-            <Icon name="log out" size="large" inverted/>
+            <Icon name="log out" size="large" inverted />
           </Nav.Link>
         </Nav>
       </Navbar>

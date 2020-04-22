@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import { Table, Pagination, Dimmer, Loader } from "semantic-ui-react";
-import { TeamTableHeader, TeamTableBody } from ".";
+import { TeamTableHeader, TeamTableBody, NoData } from "../components";
 
 export class PaneContent extends React.Component {
 
@@ -22,6 +22,9 @@ export class PaneContent extends React.Component {
 
         // Table first page data
         if (activePage === 1) {
+            if (tableData === null) {
+                return { dataPerPage: [] }
+            }
             if (tableData !== dataPerPage) {
                 let initialData = tableData.slice(0, pageSize);
                 return { dataPerPage: initialData };
@@ -45,9 +48,16 @@ export class PaneContent extends React.Component {
         let { activePage, pageSize, dataPerPage } = this.state;
         let { paneFile, tableKeys, tableData } = this.props;
         let colSpan = tableKeys.length;
-        let rowsCount = tableData.length;
 
-        if (tableData.length !== 0) {
+        if (tableData) {
+            let rowsCount = tableData.length;
+            if (rowsCount === 0) {
+                return (
+                    <div className='mt-5'>
+                        <NoData />
+                    </div>
+                )
+            }
             return (
                 <div>
                     <div className='d-flex flex-row mt-5'>
@@ -110,5 +120,5 @@ export class PaneContent extends React.Component {
 PaneContent.propTypes = {
     paneFile: PropTypes.string.isRequired,
     tableKeys: PropTypes.arrayOf(String).isRequired,
-    tableData: PropTypes.arrayOf(Object).isRequired
+    tableData: PropTypes.arrayOf(Object)
 }

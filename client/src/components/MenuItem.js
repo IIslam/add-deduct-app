@@ -9,7 +9,7 @@ export class MenuItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            records: [],
+            records: null,
             collection: this.props.fileName
         }
     }

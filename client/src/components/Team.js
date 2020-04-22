@@ -24,7 +24,7 @@ export class Team extends React.Component {
     })
 
     if (JSON.stringify(data[0]) === JSON.stringify(header)) {
-      toast.success("Your file has been uploaded.", {
+      toast.success("Correct file. You can now visualize your data in the table below.", {
         className: "bg-success font-weight-bold",
         progressClassName: 'progress-bar bg-white'
       })

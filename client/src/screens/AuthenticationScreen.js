@@ -11,6 +11,7 @@ class authenticationContainer extends Component {
       loginError: state.auth.errorMessage,
       loading: state.auth.loading,
       isAuthenticated: state.auth.isAuthenticated,
+      account: state.auth.account
     };
   }
 
@@ -36,6 +37,7 @@ class authenticationContainer extends Component {
     signupSubheader: string,
     usernamePlaceholder: string,
     initializeApp: () => void,
+    account: Object
   };
 
   // / IF You want to reset the State Please un-comment this function
@@ -43,7 +45,6 @@ class authenticationContainer extends Component {
     this.props.initializeApp();
   }
   render() {
-
     return (
       <div>
         <LoginForm
@@ -63,6 +64,7 @@ class authenticationContainer extends Component {
           signupSubheader={this.props.signupSubheader}
           usernamePlaceholder={this.props.usernamePlaceholder}
           loginWelcomeImg={this.props.loginWelcomeImg}
+          account={this.props.account}
         />
       </div>
     );
