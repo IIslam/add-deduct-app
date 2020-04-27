@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Table, Pagination } from "semantic-ui-react";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
-import { Table, Pagination, Dimmer, Loader } from "semantic-ui-react";
 import { TeamTableHeader, TeamTableBody, NoData } from "../components";
 
 export class PaneContent extends React.Component {
@@ -52,11 +52,7 @@ export class PaneContent extends React.Component {
         if (tableData) {
             let rowsCount = tableData.length;
             if (rowsCount === 0) {
-                return (
-                    <div className='mt-5'>
-                        <NoData />
-                    </div>
-                )
+                return <NoData />
             }
             return (
                 <div>
@@ -103,14 +99,6 @@ export class PaneContent extends React.Component {
                             </Table.Row>
                         </Table.Footer>
                     </Table>
-                </div>
-            )
-        } else {
-            return (
-                <div className="p-3">
-                    <Dimmer active inverted>
-                        <Loader inverted>Fetching Data</Loader>
-                    </Dimmer>
                 </div>
             )
         }

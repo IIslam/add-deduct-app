@@ -9,25 +9,35 @@ const renameKeys = (keysMap, obj) =>
     {}
   );
 
+const MONTHS = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+]
+
 const getSubmissionDate = () => {
 
   // New Date Object
   let submissionDate = new Date(Date.now());
 
-  let date = ("0" + submissionDate.getDate()).slice(-2);
-  let month = ("0" + (submissionDate.getMonth() + 1)).slice(-2);
+  let month = submissionDate.getMonth()
   let year = submissionDate.getFullYear();
-  let hours = submissionDate.getHours();
-  let minutes = submissionDate.getMinutes();
+  let submittedAt = MONTHS[month] + ' ' + year;
 
-  let submitDate = date + '-' + month + '-' + year;
-  let submitTime = hours + ':' + minutes;
-  let submittedAt = submitDate + ' @ ' + submitTime;
-  
   return submittedAt;
 }
 
 const normalizeData = (keys, data, user) => {
+
   // 1: convert array of arrays to array of objects
   let converted = data.map(entry => {
     return _.toPlainObject(entry);

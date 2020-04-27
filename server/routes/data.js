@@ -1,3 +1,4 @@
+const _ = require("lodash");
 const { Router } = require("express");
 const { normalizeData } = require("../util");
 const {
@@ -37,13 +38,14 @@ module.exports = db => {
     });
 
   // API: EXPORT DATA
-  router.get("/export_data/:collection",
+  router.get("/export_data/:collection/:year/:month",
     ensureLoggedIn,
     ensureHasRole(['ADA_HR']),
     (req, res) => {
-      let collection = req.params.collection;
+      let date = _.startCase((req.params.month + " " + req.params.year));
+      let collection = (req.params.collection).replace(/_/, '-');
       db.collection(collection)
-        .find({}, { fields: { _id: 0 } })
+        .find({ submittedAt: date }, { projection: { _id: 0 } })
         .toArray((err, resultArray) => {
           if (err) {
             console.error(err);
