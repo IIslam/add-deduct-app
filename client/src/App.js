@@ -13,7 +13,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import { ConnectedHeader, ConnectedPrivateRoute } from "./components";
 
 import {
-  UploadUsersScreen,
   RegistrationScreen,
   AuthenticationScreen,
   SalaryAdjustmentScreen,
@@ -37,8 +36,7 @@ import {
   OnCallScreen,
   ProfileChangeScreen,
   NewHiresScreen,
-  HRScreen,
-  HRFilesScreen
+  HRDashboard
 } from "./screens";
 
 import "semantic-ui-css/semantic.min.css";
@@ -123,19 +121,7 @@ class App extends Component {
                 <ConnectedPrivateRoute
                   allowed={["ADA_HR"]}
                   path="/hr"
-                  exact
-                  component={HRScreen}
-                />
-                <ConnectedPrivateRoute
-                  allowed={["ADA_HR"]}
-                  path="/hr_files"
-                  component={HRFilesScreen}
-                />
-                <ConnectedPrivateRoute
-                  allowed={["ADA_HR"]}
-                  path="/upload_users"
-                  exact
-                  component={UploadUsersScreen}
+                  component={HRDashboard}
                 />
                 <ConnectedPrivateRoute
                   path="/salary_adjust"

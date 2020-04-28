@@ -118,40 +118,40 @@ export class UploadUsersScreen extends Component {
 
   render() {
     return (
-      <Container fluid className='bg-light p-5' style={{ height: "100vh" }}>
-        <div className="offset-md-2 col-md-8 border bg-white rounded p-5">
-          <Header as="h2" color='red'>Users Upload</Header>
+      <Container fluid className='bg-white p-5' style={{ height: "100vh" }}>
+        <div>
+          <Header as="h2" color='red'>Upload Users</Header>
           <Divider clearing />
-          <div className="d-flex flex-column align-items-center justify-content-center mt-5">
-            <Button
-              basic
-              className='w-50'
-              onClick={() => this.fileInput.current.click()}
-            >
-              <Icon name='file excel outline' />
+        </div>
+        <div className="d-flex flex-column align-items-center justify-content-center mt-5">
+          <Button
+            basic
+            className='w-50'
+            onClick={() => this.fileInput.current.click()}
+          >
+            <Icon name='file excel outline' />
               Choose Your Users Excel File
             </Button>
-            <input
-              ref={this.fileInput}
-              type="file"
-              hidden
-              onChange={this.onChangeHandler}
-            />
-            <div className="form-group mt-3 w-50">
-              <ToastContainer />
-              <Progress max="100" color="success" value={this.state.loaded}>
-                {Math.round(this.state.loaded, 2)}%
+          <input
+            ref={this.fileInput}
+            type="file"
+            hidden
+            onChange={this.onChangeHandler}
+          />
+          <div className="form-group mt-3 w-50">
+            <ToastContainer />
+            <Progress max="100" color="success" value={this.state.loaded}>
+              {Math.round(this.state.loaded, 2)}%
                 </Progress>
-            </div>
-            <Button
-              positive
-              className='w-50'
-              onClick={this.onClickHandler}
-            >
-              <Icon name='cloud upload' />
+          </div>
+          <Button
+            positive
+            className='w-50'
+            onClick={this.onClickHandler}
+          >
+            <Icon name='cloud upload' />
               Upload
             </Button>
-          </div>
         </div>
       </Container>
     );

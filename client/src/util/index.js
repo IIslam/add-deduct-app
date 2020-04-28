@@ -46,6 +46,7 @@ import {
     NH_keys
 } from "../keys";
 
+/* Arrays */
 const roleRoute = {
     ADA_HR: HRT.INITIAL_ROUTE,
     ADA_IG: IGT.INITIAL_ROUTE,
@@ -99,6 +100,55 @@ export const FILES = [
     { key: 'salary adjustment', value: 'salary adjustment', text: 'Salary Adjustment' },
 ]
 
+export const TEAMS = [
+    { key: 'salary adjustment', value: 'salary adjustment', text: SAT.NAME },
+    { key: 'overtime', value: 'overtime', text: OVT.NAME },
+    { key: 'net expenses', value: 'net expenses', text: NEXT.NAME },
+    { key: 'night shift amount', value: 'night shift amount', text: NSAT.NAME },
+    { key: 'night shift days', value: 'night shift days', text: NSDT.NAME },
+    { key: 'lost hours', value: 'lost hours', text: LHT.NAME },
+    { Key: 'overtime reward gross', value: 'overtime reward gross', text: ORGT.NAME },
+    { key: 'no show detailed', value: 'no show detailed', text: NSHDT.NAME },
+    { key: 'no shows', value: 'no shows', text: NSHT.NAME },
+    { key: 'incentives gross', value: 'incentives gross', text: IGT.NAME },
+    { key: 'incentives net', value: 'incentives net', text: INT.NAME },
+    { key: 'mobile bill', value: 'mobile bill', text: MBT.NAME },
+    { key: 'sick leave detailed', value: 'sick leave detailed', text: SLDT.NAME },
+    { key: 'sick leave cons', value: 'sick leave cons', text: SLCT.NAME },
+    { key: 'ukde referral', value: 'ukde referral', text: UKDET.NAME },
+    { key: 'award gross amount', value: 'award gross amount', text: AGAT.NAME },
+    { key: 'gym', value: 'gym', text: GYMT.NAME },
+    { key: 'penalties detailed', value: 'penalties detailed', text: PDT.NAME },
+    { key: 'on call', value: 'on call', text: OCT.NAME },
+    { key: 'profile change', value: 'profile change', text: PCT.NAME },
+    { key: 'new hires', value: 'new hires', text: NHT.NAME }
+]
+
+export const KEYS = {
+    "salary adjustment": SAT.PANE_KEYS,
+    "overtime": OVT.PANE_KEYS,
+    "net expenses": NEXT.PANE_KEYS,
+    "night shift amount": NSAT.PANE_KEYS,
+    "night shift days": NSDT.PANE_KEYS,
+    "lost hours": LHT.PANE_KEYS,
+    "overtime reward gross": ORGT.PANE_KEYS,
+    "no show detailed": NSHDT.PANE_KEYS,
+    "no shows": NSHT.PANE_KEYS,
+    "incentives gross": IGT.PANE_KEYS,
+    "incentives net": INT.PANE_KEYS,
+    "mobile bill": MBT.PANE_KEYS,
+    "sick leave detailed": SLDT.PANE_KEYS,
+    "sick leave cons": SLCT.PANE_KEYS,
+    "ukde referral": UKDET.PANE_KEYS,
+    "award gross amount": AGAT.PANE_KEYS,
+    "gym": GYMT.PANE_KEYS,
+    "penalties detailed": PDT.PANE_KEYS,
+    "on call": OCT.PANE_KEYS,
+    "profile change": PCT.PANE_KEYS,
+    "new hires": NHT.PANE_KEYS
+}
+
+/* Methods */
 export const getInitialRoute = (role) => {
     return roleRoute[role];
 }

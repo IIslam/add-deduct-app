@@ -29,5 +29,6 @@ export * from './ProfileChangeScreen';
 export * from './NewHiresScreen';
 
 /* HR Team */
-export * from './HRScreen';
+export * from './ViewData';
+export * from './HRDashboard';
 export * from './HRFilesScreen';

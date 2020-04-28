@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { EXPORT_DATA_API } from "../api";
 import {
     IGT,
@@ -148,6 +149,24 @@ export const profileChangeRequest = (year, month) => {
             return []
         } else {
             return [PCRD]
+        }
+    }).catch(err => {
+        throw err;
+    })
+}
+
+export const fetchDataRequest = (year, month, teamName) => {
+    let SEARCH_API = EXPORT_DATA_API + "/" + _.kebabCase(teamName) + "/" + year + "/" + month;
+    return fetch(SEARCH_API, {
+        headers: { "Content-Type": "application/json" },
+        method: "GET"
+    }).then(res => {
+        return res.json();
+    }).then(data => {
+        if (data.length === 0) {
+            return []
+        } else {
+            return data
         }
     }).catch(err => {
         throw err;
