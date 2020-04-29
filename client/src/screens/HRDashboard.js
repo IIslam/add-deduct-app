@@ -8,7 +8,8 @@ import {
 import {
     ViewData,
     HRFilesScreen,
-    UploadUsersScreen
+    UploadUsersScreen,
+    SubmissionDateScreen
 } from "../screens"
 
 export class HRDashboard extends React.Component {
@@ -36,7 +37,7 @@ export class HRDashboard extends React.Component {
             },
             {
                 menuItem: { key: "deadline", icon: "calendar", content: "Submission Deadline" },
-                render: () => <Tab.Pane>Content 4</Tab.Pane>
+                render: () => <Tab.Pane><SubmissionDateScreen /></Tab.Pane>
             }
         ]
 

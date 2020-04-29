@@ -55,7 +55,7 @@ export class PaneContent extends React.Component {
                 return <NoData />
             }
             return (
-                <div>
+                <div className="shadow rounded p-5 mt-5">
                     <div className='d-flex flex-row mt-5'>
                         <ReactHTMLTableToExcel
                             id='test-table-xls-button'

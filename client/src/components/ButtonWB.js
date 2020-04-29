@@ -3,8 +3,13 @@ import { Button, Icon } from "semantic-ui-react";
 
 export const ButtonWB = () => {
     return (
-        <Button icon basic color="green">
-            <Icon name="download" />
+        <Button
+            icon
+            color="green"
+            floated="right"
+            className="mr-5 mt-3"
+        >
+            <Icon name="download" inverted />
         </Button>
     )
 }

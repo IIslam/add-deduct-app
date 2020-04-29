@@ -126,55 +126,57 @@ export class HRFilesScreen extends React.Component {
                     </Header>
                     <Divider clearing />
                 </div>
-                <Header as="h5" floated color="black">
-                    Choose a date and a file name to download their excel sheet:
-                </Header>
-                <div className="mt-2 d-flex flex-row">
-                    <Dropdown
-                        placeholder='Select Year'
-                        fluid
-                        search
-                        selection
-                        value={year}
-                        options={YEARS}
-                        className="w-25 mr-3"
-                        onChange={this.handleYearChoice}
-                    />
-                    <Dropdown
-                        placeholder='Select Month'
-                        fluid
-                        search
-                        selection
-                        value={month}
-                        options={MONTHS}
-                        className="w-25 mr-3"
-                        onChange={this.handleMonthChoice}
-                    />
-                    <Dropdown
-                        placeholder='Select File'
-                        fluid
-                        search
-                        selection
-                        value={fileName}
-                        options={FILES}
-                        className="w-25 mr-3"
-                        onChange={this.handleFileChoice}
-                    />
-                    <Button
-                        color='red'
-                        className='mr-3'
-                        onClick={this.handleClick}
-                    >
-                        <Icon name='search' inverted />
+                <div className="mt-5 shadow rounded p-5">
+                    <Header as="h5" floated color="black">
+                        Choose a date and a file name to download their excel sheet:
+                    </Header>
+                    <div className="mt-2 d-flex flex-row">
+                        <Dropdown
+                            placeholder='Select Year'
+                            fluid
+                            search
+                            selection
+                            value={year}
+                            options={YEARS}
+                            className="w-25 mr-3"
+                            onChange={this.handleYearChoice}
+                        />
+                        <Dropdown
+                            placeholder='Select Month'
+                            fluid
+                            search
+                            selection
+                            value={month}
+                            options={MONTHS}
+                            className="w-25 mr-3"
+                            onChange={this.handleMonthChoice}
+                        />
+                        <Dropdown
+                            placeholder='Select File'
+                            fluid
+                            search
+                            selection
+                            value={fileName}
+                            options={FILES}
+                            className="w-25 mr-3"
+                            onChange={this.handleFileChoice}
+                        />
+                        <Button
+                            color='red'
+                            className='mr-3'
+                            onClick={this.handleClick}
+                        >
+                            <Icon name='search' inverted />
                         Search
                     </Button>
-                    <Button
-                        basic
-                        onClick={this.resetHandler}
-                    >
-                        <Icon name='redo' />
+                        <Button
+                            basic
+                            onClick={this.resetHandler}
+                        >
+                            <Icon name='redo' />
                         Reset
                     </Button>
+                    </div>
                 </div>
                 {
                     dataToExport &&

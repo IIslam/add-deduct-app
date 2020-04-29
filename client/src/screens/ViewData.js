@@ -56,14 +56,14 @@ export class ViewData extends React.Component {
     render() {
         let { year, month, teamName, exportedData } = this.state;
         return (
-            <Container fluid className="bg-white p-5" style={{ height: "100vh" }}>
+            <Container fluid className="bg-white p-5" style={{ height: "120vh" }}>
                 <div>
                     <Header as="h2" floated color="red">
                         Data Visualization
                         </Header>
                     <Divider clearing />
                 </div>
-                <div className="mt-5">
+                <div className="mt-5 shadow rounded p-5">
                     <Header as="h5" floated color="black">
                         Choose a date and a team name to view their submitted data:
                     </Header>

@@ -32,3 +32,4 @@ export * from './NewHiresScreen';
 export * from './ViewData';
 export * from './HRDashboard';
 export * from './HRFilesScreen';
+export * from './SubmissionDateScreen';
