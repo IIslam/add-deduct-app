@@ -1,16 +1,12 @@
 const bcrypt = require("bcryptjs");
 const express = require("express");
-
-const fs = require("fs");
-
 const {
   ensureLoggedIn,
-  ensureHasRole
+  ensureHasRole,
 } = require("../middlewares/authentication");
-const { getHtmlBody } = require("../utilities");
 let mailer = require("../services/mail");
 
-module.exports = db => {
+module.exports = (db) => {
   const router = new express.Router();
   const collection = "employees";
 
@@ -25,20 +21,66 @@ module.exports = db => {
     );
   });
 
-  let roles = {};
-  router.post("/search", ensureLoggedIn, ensureHasRole(["hr"]), function(
+  router.post("/search", ensureLoggedIn, ensureHasRole(["hr"]), function (
     req,
     res
   ) {
     db.collection(collection)
       .findOne({ staffId: Number(req.body.staffId) })
-      .then(user => {
+      .then((user) => {
         if (!user) {
           res.status(404).end();
         } else {
           res.json(user);
         }
       });
+  });
+
+  // API: RETURN ALL USERS
+  router.get(
+    "/listUsers",
+    ensureLoggedIn,
+    ensureHasRole(["ADA_HR"]),
+    (req, res) => {
+      db.collection("users")
+        .find({}, { projection: { password: 0, _id: 0, roles: 0 } })
+        .toArray((err, users) => {
+          if (err) {
+            console.log(err);
+            throw err;
+          }
+          res.status(200).json(users).end();
+        });
+    }
+  );
+
+  // API: UPDATE ACCOUNT STATUS
+  router.put(
+    "/changeStatus/:username",
+    ensureLoggedIn,
+    ensureHasRole(["ADA_HR"]),
+    (req, res) => {
+      const { username } = req.params;
+      const { active } = req.body;
+      const status = !active ? "Disabled" : "Activated";
+      db.collection("users").findOneAndUpdate(
+        { username: username },
+        { $set: { active: active } },
+        (err, doc) => {
+          if (err) throw err;
+          res.status(200).json({ status: status }).end();
+        }
+      );
+    }
+  );
+
+  // API: DELETE USER
+  router.delete("/deleteUser/:username", (req, res) => {
+    const { username } = req.params;
+    db.collection("users").deleteOne({ username: username }, (err) => {
+      if (err) throw err;
+      res.status(200).json({ userDeleted: true }).end();
+    });
   });
 
   router.post(
@@ -56,11 +98,10 @@ module.exports = db => {
         "jobTitle",
         "hiringDate",
         "mobile",
-        "username"
+        "username",
       ];
-      console.log('hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
       const users_columns = ["username", "staffId", "roles"];
-      let checker = (arr, target) => target.every(v => arr.includes(v)); //To check if all elements exist
+      let checker = (arr, target) => target.every((v) => arr.includes(v)); //To check if all elements exist
       if (
         //Check if all the required columns exist in the header
         req.body.jsonData.length == 0 ||
@@ -77,7 +118,7 @@ module.exports = db => {
       } else {
         db.collection(req.body.collection).insertMany(
           req.body.jsonData,
-          function(err1, result) {
+          function (err1, result) {
             if (err1) {
               res.status(500).send();
               res.end();
@@ -90,7 +131,7 @@ module.exports = db => {
                   let scope = {
                     name: getFirstName(username),
                     staffId,
-                    signupUrl: ""
+                    signupUrl: "",
                   };
                   let subject = `Welcome ${scope.name} to Vodafone Addition Deduction App`;
                   mailer.sendEmail([username], subject);
@@ -113,14 +154,14 @@ module.exports = db => {
     db.collection("users").updateOne(
       { username: req.body.username },
       { $set: { password: req.body.password } },
-      function(err) {
+      function (err) {
         if (err) {
           return res.status(500).json({
-            msg: "Failed to update document."
+            msg: "Failed to update document.",
           });
         } else {
           return res.status(200).json({
-            msg: "Document successfully updated."
+            msg: "Document successfully updated.",
           });
         }
       }
@@ -130,7 +171,7 @@ module.exports = db => {
   return router;
 };
 
-const getFirstName = email => {
+const getFirstName = (email) => {
   let initailSuffix = email.split("@")[0];
   if (initailSuffix.includes(".")) {
     return initailSuffix.split(".")[0];

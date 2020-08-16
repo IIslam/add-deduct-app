@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Button,
   Form,
@@ -6,18 +6,17 @@ import {
   Header,
   Image,
   Loader,
-  Dimmer
-} from 'semantic-ui-react';
-import vodafoneLogo from '../assets/images/logo.svg';
-import { getInitialRoute } from '../util';
-
+  Dimmer,
+} from "semantic-ui-react";
+import vodafoneLogo from "../assets/images/logo.svg";
+import { getInitialRoute } from "../util";
 
 export class LoginForm extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
-      password: ''
+      username: "",
+      password: "",
     };
   }
 
@@ -25,7 +24,7 @@ export class LoginForm extends Component {
     let { account } = nextProps;
     if (nextProps.isAuthenticated && account !== undefined) {
       let userRole = account.roles[0];
-      let initialRoute = getInitialRoute(userRole)
+      let initialRoute = getInitialRoute(userRole);
       nextProps.history.push(initialRoute);
     }
     return null;
@@ -48,12 +47,12 @@ export class LoginForm extends Component {
     isAuthenticated: boolean,
     error: string,
     history: Object,
-    account: Object
+    account: Object,
   };
 
   updateFields = (value, key) => {
     this.setState({
-      [key]: value
+      [key]: value,
     });
   };
 
@@ -61,34 +60,34 @@ export class LoginForm extends Component {
     const value = (
       <div>
         <Dimmer active>
-          <Loader size='large' indeterminate>
+          <Loader size="large" indeterminate>
             Loading.....
           </Loader>
         </Dimmer>
-        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+        <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
       </div>
     );
     const loading = this.props.loading ? (
       value
     ) : (
-        <h1 style={{ color: 'red' }}>{this.props.error}</h1>
-      );
+      <h1 style={{ color: "red" }}>{this.props.error}</h1>
+    );
 
     return (
-      <Grid divided style={{ margin: 5, fontFamily: 'Poppins' }}>
-        <Grid.Column width={7} only='large screen'>
-          <Grid textAlign='center' verticalAlign='middle'>
+      <Grid divided style={{ margin: 5, fontFamily: "Poppins" }}>
+        <Grid.Column width={7} only="large screen">
+          <Grid textAlign="center" verticalAlign="middle">
             <Grid.Row>
-              <Grid.Column floated='left' width={5}>
+              <Grid.Column floated="left" width={5}>
                 <Image
                   src={this.props.logo || vodafoneLogo}
-                  style={{ height: '35px', width: '35px' }}
+                  style={{ height: "35px", width: "35px" }}
                 />
               </Grid.Column>
-              <Grid.Column floated='right' width={5}>
+              <Grid.Column floated="right" width={5}>
                 <Button
                   basic
-                  color='black'
+                  color="black"
                   onClick={() => {
                     this.props.history.push(this.props.signupHref);
                   }}
@@ -98,16 +97,16 @@ export class LoginForm extends Component {
               </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-              <Header as='h2' color='black' textAlign='center'>
+              <Header as="h2" color="black" textAlign="center">
                 {this.props.signupHeader}
               </Header>
             </Grid.Row>
             <Grid.Row>
-              <Header as='h4' color='black' textAlign='center'>
+              <Header as="h4" color="black" textAlign="center">
                 {this.props.signupSubheader}
               </Header>
             </Grid.Row>
-            <Grid.Row verticalAlign='bottom'>
+            <Grid.Row verticalAlign="bottom">
               <Image src={this.props.loginWelcomeImg} />
             </Grid.Row>
           </Grid>
@@ -116,45 +115,45 @@ export class LoginForm extends Component {
           largeScreen={9}
           widescreen={9}
           tablet={16}
-          style={{ backgroundColor: '#f4f4f4' }}
+          style={{ backgroundColor: "#f4f4f4" }}
         >
           <Grid
-            textAlign='center'
-            style={{ height: '100vh' }}
-            verticalAlign='middle'
+            textAlign="center"
+            style={{ height: "100vh" }}
+            verticalAlign="middle"
           >
             <Grid.Column style={{ maxWidth: 450 }}>
-              <Header as='h2' color='black' textAlign='center'>
+              <Header as="h2" color="black" textAlign="center">
                 {this.props.headerText}
               </Header>
-              <Header as='h4' color='black' textAlign='center'>
+              <Header as="h4" color="black" textAlign="center">
                 {this.props.subheaderText}
               </Header>
-              <Form size='large'>
+              <Form size="large">
                 <Form.Input
                   fluid
-                  icon='user'
-                  iconPosition='left'
-                  onChange={event => {
-                    this.updateFields(event.target.value, 'username');
+                  icon="user"
+                  iconPosition="left"
+                  onChange={(event) => {
+                    this.updateFields(event.target.value, "username");
                   }}
                   placeholder={this.props.usernamePlaceholder}
                 />
                 <Form.Input
                   fluid
-                  icon='lock'
-                  iconPosition='left'
-                  onChange={event => {
-                    this.updateFields(event.target.value, 'password');
+                  icon="lock"
+                  iconPosition="left"
+                  onChange={(event) => {
+                    this.updateFields(event.target.value, "password");
                   }}
                   placeholder={this.props.passwordPlaceholder}
-                  type='password'
+                  type="password"
                 />
 
                 <Button
-                  color='red'
+                  color="red"
                   fluid
-                  size='large'
+                  size="large"
                   onClick={() => {
                     this.props.tryLogin(this.state);
                   }}

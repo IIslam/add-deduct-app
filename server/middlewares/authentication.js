@@ -30,13 +30,19 @@ module.exports = {
             console.log(err);
             return done(null, false, { message: "Incorrect credentials." });
           }
-          bcrypt.compare(password, user ? user.password : "").then(match => {
-            if (user && match) {
-              const { username, name, roles } = user;
-              return done(null, { username, name, roles });
-            }
-            return done(null, false, { message: "Incorrect credentials." });
-          });
+          if (user.active) {
+            bcrypt
+              .compare(password, user ? user.password : "")
+              .then((match) => {
+                if (user && match) {
+                  const { username, name, roles } = user;
+                  return done(null, { username, name, roles });
+                }
+                return done(null, false, { message: "Incorrect credentials." });
+              });
+          } else {
+            return done(null, false, { message: "Your Account is disabled" });
+          }
         });
       })
     );
@@ -48,13 +54,13 @@ module.exports = {
     }
     next();
   },
-  ensureHasRole: roles => (req, res, next) => {
+  ensureHasRole: (roles) => (req, res, next) => {
     debug("ensuring", req.user ? req.user.role : "<unknown>");
-    if (!req.user.roles || !roles.some(r => req.user.roles.includes(r))) {
+    if (!req.user.roles || !roles.some((r) => req.user.roles.includes(r))) {
       res.sendStatus(403);
       res.end();
       return res;
     }
     next();
-  }
+  },
 };

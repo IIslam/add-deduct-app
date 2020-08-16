@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
-import { LoginForm } from '../components';
-import { login, logout, initializeApp } from '../state';
+import { LoginForm } from "../components";
+import { login, logout, initializeApp } from "../state";
 
 class authenticationContainer extends Component {
   static mapStateToProps(state) {
@@ -11,14 +11,13 @@ class authenticationContainer extends Component {
       loginError: state.auth.errorMessage,
       loading: state.auth.loading,
       isAuthenticated: state.auth.isAuthenticated,
-      account: state.auth.account
+      account: state.auth.account,
     };
   }
 
   static mapDispatchToProps(dispatch) {
     return bindActionCreators({ login, logout, initializeApp }, dispatch);
   }
-
 
   props: {
     loginError: string,
@@ -37,7 +36,7 @@ class authenticationContainer extends Component {
     signupSubheader: string,
     usernamePlaceholder: string,
     initializeApp: () => void,
-    account: Object
+    account: Object,
   };
 
   // / IF You want to reset the State Please un-comment this function
@@ -73,5 +72,5 @@ class authenticationContainer extends Component {
 
 export const AuthenticationScreen = connect(
   authenticationContainer.mapStateToProps,
-  authenticationContainer.mapDispatchToProps,
+  authenticationContainer.mapDispatchToProps
 )(authenticationContainer);
